@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[1.17.0, )"
             },
+            "MiniProfiler.Shared": {
+              "target": "Package",
+              "version": "[4.2.22, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -60,6 +64,14 @@
             "Z.Dapper.Plus": {
               "target": "Package",
               "version": "[4.0.33, )"
+            },
+            "dbup-core": {
+              "target": "Package",
+              "version": "[4.6.3, )"
+            },
+            "dbup-sqlserver": {
+              "target": "Package",
+              "version": "[4.6.0, )"
             }
           },
           "imports": [

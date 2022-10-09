@@ -19,4 +19,5 @@ RUN dotnet publish "Recepati.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV DB_LOCATION=localhost
 ENTRYPOINT ["dotnet", "Recepati.dll"]

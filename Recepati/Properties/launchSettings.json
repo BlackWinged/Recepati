@@ -15,7 +15,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_LOCATION": "localhost",
+        "DB_USERNAME": "sa",
+        "DB_PASSWORD": "SuperStronkPassword!"
       }
     },
     "Docker": {
