@@ -1,3 +1,4 @@
+using Recepati.Code.Models;
 using Recepati.Db.Code;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +21,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+var migrator = new Migrator(new PublicConn());
+migrator.RunUpgrade();

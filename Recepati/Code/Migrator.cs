@@ -23,7 +23,7 @@ namespace Recepati.Code.Models
 
             var result = upgrader.PerformUpgrade();
 
-            
+            var test = 1;
         }
 
         public Migrator(PublicConn conn)
