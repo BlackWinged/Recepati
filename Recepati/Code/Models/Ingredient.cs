@@ -2,7 +2,7 @@
 
 namespace Recepati.Code.Models
 {
-    public class Ingredient
+    public class Ingredient: BaseObject
     {
         public string Name { get; set; }
         public List<Ingredient> Alternatives { get; set; }

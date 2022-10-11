@@ -3,7 +3,7 @@
     "Recepati": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "recipe",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -13,7 +13,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "recipe",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DB_LOCATION": "localhost",
@@ -24,9 +24,15 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/recipe",
       "publishAllPorts": true,
-      "useSSL": true
+      //"useSSL": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_LOCATION": "localhost",
+        "DB_USERNAME": "sa",
+        "DB_PASSWORD": "SuperStronkPassword!"
+      }
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",

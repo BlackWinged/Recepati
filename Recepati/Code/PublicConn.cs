@@ -13,7 +13,7 @@ namespace Recepati.Db.Code
             var dbLocation = Environment.GetEnvironmentVariable("DB_LOCATION");
             var dbUser = Environment.GetEnvironmentVariable("DB_USERNAME");
             var dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD");
-            ConnectionString = $"user id={dbUser};password={dbPass};initial catalog=Recepati;data source={dbLocation};Connect Timeout=900;Max Pool Size=400;MultipleActiveResultSets=True;";
+            ConnectionString = $"user id={dbUser};password={dbPass};initial catalog=Recepati;data source={dbLocation};Connect Timeout=2;Max Pool Size=1;MultipleActiveResultSets=True;";
 
 
         }

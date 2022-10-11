@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,9 +10,11 @@
 
   <ItemGroup>
     <None Remove="Migrator\001-InitializeDb.sql" />
+    <None Remove="Migrator\002-Fix RecipeVsIngredient.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\002-Fix RecipeVsIngredient.sql" />
     <EmbeddedResource Include="Migrator\001-InitializeDb.sql" />
   </ItemGroup>
 
@@ -25,10 +27,6 @@
     <PackageReference Include="MiniProfiler.Shared" Version="4.2.22" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Z.Dapper.Plus" Version="4.0.33" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Code\Models\" />
   </ItemGroup>
 
 </Project>
