@@ -11,9 +11,11 @@
   <ItemGroup>
     <None Remove="Migrator\001-InitializeDb.sql" />
     <None Remove="Migrator\002-Fix RecipeVsIngredient.sql" />
+    <None Remove="Migrator\003-Add description to ingredient.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\003-Add description to ingredient.sql" />
     <EmbeddedResource Include="Migrator\002-Fix RecipeVsIngredient.sql" />
     <EmbeddedResource Include="Migrator\001-InitializeDb.sql" />
   </ItemGroup>
