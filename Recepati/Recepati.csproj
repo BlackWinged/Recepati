@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Code\Managers\**" />
+    <Content Remove="Code\Managers\**" />
+    <EmbeddedResource Remove="Code\Managers\**" />
+    <None Remove="Code\Managers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Code\DB\DB_Ingredient.cs" />
+    <Compile Remove="Code\Models\IngredientVsAlternative.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Migrator\001-InitializeDb.sql" />
     <None Remove="Migrator\002-Fix RecipeVsIngredient.sql" />
     <None Remove="Migrator\003-Add description to ingredient.sql" />
