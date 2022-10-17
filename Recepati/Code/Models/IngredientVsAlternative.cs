@@ -2,18 +2,15 @@
 
 namespace Recepati.Code.Models
 {
-    public class Ingredient: BaseObject
+    public class IngredientVsAlternative : BaseObject
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public List<Ingredient> Alternatives { get; set; }
-        public decimal Price { get; set; }
+        public string IngredientId1 { get; set; }
+        public string IngredientId2 { get; set; }
 
-        public Ingredient()
+        public IngredientVsAlternative()
         {
-            Name = "";
-            Description = "";
-            Alternatives = new List<Ingredient>();
+            IngredientId1 = "";
+            IngredientId2 = "";
         }
     }
 }

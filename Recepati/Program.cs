@@ -33,8 +33,8 @@ app.UseAuthorization();
 app.UseCors("Origins");
 app.MapControllers();
 
-//var migrator = new Migrator(new PublicConn());
-//migrator.RunUpgrade();
+var migrator = new Migrator(new PublicConn());
+migrator.RunUpgrade();
 
 app.Run();
 
