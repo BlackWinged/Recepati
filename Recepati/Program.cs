@@ -1,5 +1,7 @@
 using Recepati.Code.Models;
+using Recepati.Database;
 using Recepati.Db.Code;
+using Recepati.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<PublicConn, PublicConn>();
+builder.Services.AddScoped<DB_Ingredient, DB_Ingredient>();
+builder.Services.AddScoped<IngredientManager, IngredientManager>();
 
 
 builder.Services.AddCors(options =>

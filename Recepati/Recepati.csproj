@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Code\Managers\IngredientManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Migrator\004-Add ingredientVsAlternative.sql" />
     <EmbeddedResource Include="Migrator\003-Add description to ingredient.sql" />
     <EmbeddedResource Include="Migrator\002-Fix RecipeVsIngredient.sql" />
