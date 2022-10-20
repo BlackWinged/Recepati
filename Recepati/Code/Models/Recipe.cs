@@ -12,6 +12,7 @@ namespace Recepati.Code.Models
         public string procedureSeralized { get; set; }
         public List<string> Procedure { get; set; }
         public List<RecipeVsIngredient> Ingredients { get; set; }
+        public string Url { get; set; }
 
         public Recipe()
         {
@@ -20,6 +21,7 @@ namespace Recepati.Code.Models
             Ingredients = new List<RecipeVsIngredient>();
             Description = "";
             procedureSeralized = "";
+            Url = "";
         }
     }
 }

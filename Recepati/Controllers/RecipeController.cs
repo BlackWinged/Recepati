@@ -21,7 +21,7 @@ namespace Recepati.Controllers
         }
 
         [HttpGet(Name = "GetAllRecipes")]
-        public IEnumerable<Recipe> Get(string query)
+        public IEnumerable<Recipe> Get(string? query)
         {
             var recipes = new List<Recipe>();
             if (query != null)
