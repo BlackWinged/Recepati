@@ -39,9 +39,7 @@ namespace Recepati.Controllers
         [HttpPost(Name = "SaveIngredient")]
         public IEnumerable<Ingredient> Post(Ingredient ingredient)
         {
-            _pdb.conn.BulkMerge(ingredient);
-
-
+            ingredients.Save(ingredient);
             return new Ingredient[] { ingredient };
         }
 

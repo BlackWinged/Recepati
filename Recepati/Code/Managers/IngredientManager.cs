@@ -32,16 +32,12 @@ namespace Recepati.Managers
             return result;
         }
 
-        [HttpPost(Name = "SaveIngredient")]
-        public IEnumerable<Ingredient> Post(Ingredient ingredient)
+        public IEnumerable<Ingredient> Save(Ingredient ingredient)
         {
-            _pdb.conn.BulkMerge(ingredient);
-
-
+            ingredients.Save(ingredient);
             return new Ingredient[] { ingredient };
         }
 
-        [Route("~/Ingredient/new")]
         public Ingredient NewIngredient()
         {
             var newRecipe = new Ingredient();

@@ -24,7 +24,7 @@ namespace Recepati.Database
 
         public IEnumerable<Ingredient> Search(string query)
         {
-            var result = _pdb.conn.GetList<Ingredient>("where name like '%query%'");
+            var result = _pdb.conn.GetList<Ingredient>($"where name like '%{query}%'");
             return result;
         }
 
@@ -32,7 +32,15 @@ namespace Recepati.Database
         {
             _pdb.conn.BulkMerge(ingredient);
 
-
+            var IvAResult = new List<IngredientVsAlternative>();
+            foreach (var alternative in ingredient.Alternatives)
+            {
+                var IvA = new IngredientVsAlternative();
+                IvA.IngredientId1 = ingredient.Id;
+                IvA.IngredientId2 = alternative.Id;
+                IvAResult.Add(IvA);
+                _pdb.conn.BulkMerge(IvAResult);
+            }
             return new Ingredient[] { ingredient };
         }
 
