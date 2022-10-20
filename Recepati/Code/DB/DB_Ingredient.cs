@@ -64,7 +64,7 @@ namespace Recepati.Database
                 var alt = _pdb.conn.GetList<Ingredient>("where Id in @ids", new { ids });
                 var altLookup = alt.ToDictionary(x => x.Id);
 
-                for (var j = 0; j <= bufferIds.Count(); j++)
+                for (var j = 0; j < bufferIds.Count(); j++)
                 {
                     if (prodLookup.ContainsKey(bufferIds[j].IngredientId1)){
                         if (altLookup.ContainsKey(bufferIds[j].IngredientId2))

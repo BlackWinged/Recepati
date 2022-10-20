@@ -42,6 +42,7 @@ namespace Recepati.Database
                 RvI.RecipeId = recipe.Id;
                 RvI.IngredientId = ingreedy.Id;
                 IvAResult.Add(RvI);
+                _pdb.conn.Execute($"delete from recipeVsIngredient where recipeId = {recipe.Id}");
                 _pdb.conn.BulkMerge(IvAResult);
             }
             return new Recipe[] { recipe };

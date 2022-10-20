@@ -20,13 +20,16 @@
     <None Remove="Migrator\002-Fix RecipeVsIngredient.sql" />
     <None Remove="Migrator\003-Add description to ingredient.sql" />
     <None Remove="Migrator\004-Add ingredientVsAlternative.sql" />
+    <None Remove="Migrator\005-Add Size and Unit to RvI.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Code\Managers\RecipeManager.cs" />
     <Compile Include="Code\Managers\IngredientManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\005-Add Size and Unit to RvI.sql" />
     <EmbeddedResource Include="Migrator\004-Add ingredientVsAlternative.sql" />
     <EmbeddedResource Include="Migrator\003-Add description to ingredient.sql" />
     <EmbeddedResource Include="Migrator\002-Fix RecipeVsIngredient.sql" />

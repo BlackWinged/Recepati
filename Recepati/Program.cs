@@ -14,6 +14,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<PublicConn, PublicConn>();
 builder.Services.AddScoped<DB_Ingredient, DB_Ingredient>();
 builder.Services.AddScoped<IngredientManager, IngredientManager>();
+builder.Services.AddScoped<DB_Recipe, DB_Recipe>();
+builder.Services.AddScoped<RecipeManager, RecipeManager>();
 
 
 builder.Services.AddCors(options =>

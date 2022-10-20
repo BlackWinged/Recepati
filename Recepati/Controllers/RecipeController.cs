@@ -21,28 +21,20 @@ namespace Recepati.Controllers
         }
 
         [HttpGet(Name = "GetAllRecipes")]
-        public IEnumerable<Recipe> Get()
+        public IEnumerable<Recipe> Get(string query)
         {
-            var test = _pdb.conn.GetList<Recipe>();
-
-            return test;
+            var recipes = new List<Recipe>();
+            if (query != null)
+                recipes = recipeManager.Search(query).ToList();
+            else
+                recipes = recipeManager.GetAll().ToList();
+            return recipes;
         }
 
         [HttpPost(Name = "SaveRecipe")]
         public IEnumerable<Recipe> Post(Recipe recipe)
         {
-            _pdb.conn.BulkMerge(recipe);
-            _pdb.conn.BulkMerge(recipe.Ingredients);
-            var rviResult = new List<RecipeVsIngredient>();
-            foreach (var ingredient in recipe.Ingredients)
-            {
-                var RvI = new RecipeVsIngredient();
-                RvI.RecipeId = recipe.Id;
-                RvI.Id = ingredient.Id;
-                rviResult.Add(RvI);
-            }
-            _pdb.conn.BulkMerge(recipe.Ingredients);
-
+            recipeManager.Save(recipe);
 
             return new Recipe[] { recipe };
         }
