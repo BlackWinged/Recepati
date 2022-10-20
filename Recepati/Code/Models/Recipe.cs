@@ -11,13 +11,13 @@ namespace Recepati.Code.Models
         [JsonIgnore]
         public string procedureSeralized { get; set; }
         public List<string> Procedure { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
+        public List<RecipeVsIngredient> Ingredients { get; set; }
 
         public Recipe()
         {
             Procedure = new List<string>();
             Name = "";
-            Ingredients = new List<Ingredient>();
+            Ingredients = new List<RecipeVsIngredient>();
             Description = "";
             procedureSeralized = "";
         }

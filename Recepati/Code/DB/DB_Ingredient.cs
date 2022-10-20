@@ -17,15 +17,16 @@ namespace Recepati.Database
 
         public IEnumerable<Ingredient> GetAll()
         {
-            var test = _pdb.conn.GetList<Ingredient>();
-
-            return test;
+            var ingredients = _pdb.conn.GetList<Ingredient>();
+            ingredients = Relations(ingredients);
+            return ingredients;
         }
 
         public IEnumerable<Ingredient> Search(string query)
         {
-            var result = _pdb.conn.GetList<Ingredient>($"where name like '%{query}%'");
-            return result;
+            var ingredients = _pdb.conn.GetList<Ingredient>($"where name like '%{query}%'");
+            ingredients = Relations(ingredients);
+            return ingredients;
         }
 
         public IEnumerable<Ingredient> Save(Ingredient ingredient)

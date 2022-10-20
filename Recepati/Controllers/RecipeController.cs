@@ -1,6 +1,7 @@
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Recepati.Code.Models;
+using Recepati.Database;
 using Recepati.Db.Code;
 using Z.Dapper.Plus;
 
@@ -11,10 +12,12 @@ namespace Recepati.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly PublicConn _pdb;
+        private readonly RecipeManager recipeManager;
 
-        public RecipeController(PublicConn conn)
+        public RecipeController(PublicConn conn, RecipeManager recipeManager)
         {
             _pdb = conn;
+            this.recipeManager = recipeManager;
         }
 
         [HttpGet(Name = "GetAllRecipes")]
