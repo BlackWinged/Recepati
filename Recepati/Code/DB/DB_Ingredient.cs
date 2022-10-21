@@ -40,8 +40,10 @@ namespace Recepati.Database
                 IvA.IngredientId1 = ingredient.Id;
                 IvA.IngredientId2 = alternative.Id;
                 IvAResult.Add(IvA);
-                _pdb.conn.BulkMerge(IvAResult);
             }
+            _pdb.conn.Execute($"delete from IngredientVsAlternative where ingredientId1 = '{ingredient.Id}'");
+            _pdb.conn.BulkMerge(IvAResult);
+
             return new Ingredient[] { ingredient };
         }
 
@@ -66,10 +68,12 @@ namespace Recepati.Database
 
                 for (var j = 0; j < bufferIds.Count(); j++)
                 {
-                    if (prodLookup.ContainsKey(bufferIds[j].IngredientId1)){
+                    if (prodLookup.ContainsKey(bufferIds[j].IngredientId1))
+                    {
                         if (altLookup.ContainsKey(bufferIds[j].IngredientId2))
                         {
-                            prodLookup[bufferIds[j].IngredientId1].Alternatives.Add(altLookup[bufferIds[j].IngredientId2]);                        }
+                            prodLookup[bufferIds[j].IngredientId1].Alternatives.Add(altLookup[bufferIds[j].IngredientId2]);
+                        }
                     }
                 }
             }

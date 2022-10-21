@@ -25,6 +25,13 @@ namespace Recepati.Database
             return recipes;
         }
 
+        public Recipe Get(string id)
+        {
+            var recipes = this.recipes.Get(id);
+
+            return recipes;
+        }
+
         public IEnumerable<Recipe> Search(string query)
         {
             var recipes = this.recipes.Search(query);
@@ -33,18 +40,7 @@ namespace Recepati.Database
 
         public IEnumerable<Recipe> Save(Recipe recipe)
         {
-            _pdb.conn.BulkMerge(recipe);
-
-            var IvAResult = new List<RecipeVsIngredient>();
-            foreach (var ingreedy in recipe.Ingredients)
-            {
-                var RvI = new RecipeVsIngredient();
-                RvI.RecipeId = recipe.Id;
-                RvI.IngredientId = ingreedy.Id;
-                IvAResult.Add(RvI);
-                _pdb.conn.Execute($"delete from recipeVsIngredient where recipeId = {recipe.Id}");
-                _pdb.conn.BulkMerge(IvAResult);
-            }
+            this.recipes.Save(recipe);
             return new Recipe[] { recipe };
         }
 

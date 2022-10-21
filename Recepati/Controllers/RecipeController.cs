@@ -31,6 +31,15 @@ namespace Recepati.Controllers
             return recipes;
         }
 
+        [Route("~/Recipe/byId/{id}")]
+        public Recipe GetRecipe(string id)
+        {
+            var recipe = new Recipe();
+            recipe = recipeManager.Get(id);
+            return recipe;
+        }
+
+
         [HttpPost(Name = "SaveRecipe")]
         public IEnumerable<Recipe> Post(Recipe recipe)
         {
@@ -43,6 +52,14 @@ namespace Recepati.Controllers
         public Recipe NewRecipe()
         {
             var newRecipe = new Recipe();
+
+            return newRecipe;
+        }
+
+        [Route("~/Recipe/Ingredient/new")]
+        public RecipeVsIngredient NewRecipeIngredient()
+        {
+            var newRecipe = new RecipeVsIngredient();
 
             return newRecipe;
         }

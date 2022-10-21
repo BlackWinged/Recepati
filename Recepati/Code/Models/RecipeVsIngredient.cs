@@ -9,12 +9,14 @@ namespace Recepati.Code.Models
 
         public decimal Size { get; set; }
         public string? Unit { get; set; }
+        public string Name { get; set; }
 
 
         public RecipeVsIngredient()
         {
             RecipeId = "";
             IngredientId = "";
+            Name = "";
         }
     }
 }

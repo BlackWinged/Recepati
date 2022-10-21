@@ -18,9 +18,10 @@ builder.Services.AddScoped<DB_Recipe, DB_Recipe>();
 builder.Services.AddScoped<RecipeManager, RecipeManager>();
 
 
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "Origins",
+    options.AddDefaultPolicy(
                       policy =>
                       {
                           policy.WithOrigins("*")
@@ -36,7 +37,11 @@ var app = builder.Build();
 
 //app.UseHttpsRedirection();
 app.UseAuthorization();
-app.UseCors("Origins");
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors();
+}
+
 app.MapControllers();
 
 var migrator = new Migrator(new PublicConn());

@@ -21,6 +21,8 @@
     <None Remove="Migrator\003-Add description to ingredient.sql" />
     <None Remove="Migrator\004-Add ingredientVsAlternative.sql" />
     <None Remove="Migrator\005-Add Size and Unit to RvI.sql" />
+    <None Remove="Migrator\006-add Url to recipe.sql" />
+    <None Remove="Migrator\007-add name to recipeVsIngredient.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\007-add name to recipeVsIngredient.sql" />
+    <EmbeddedResource Include="Migrator\006-add Url to recipe.sql" />
     <EmbeddedResource Include="Migrator\005-Add Size and Unit to RvI.sql" />
     <EmbeddedResource Include="Migrator\004-Add ingredientVsAlternative.sql" />
     <EmbeddedResource Include="Migrator\003-Add description to ingredient.sql" />

@@ -23,6 +23,13 @@ namespace Recepati.Database
             return recipes;
         }
 
+        public Recipe Get(string id)
+        {
+            var recipes = _pdb.conn.Get<Recipe>(id);
+            Relations(new List<Recipe>() { recipes });
+            return recipes;
+        }
+
         public IEnumerable<Recipe> Search(string query)
         {
             var recipes = _pdb.conn.GetList<Recipe>($"where name like '%{query}%' or description like '%{query}%'");
@@ -34,15 +41,14 @@ namespace Recepati.Database
         {
             _pdb.conn.BulkMerge(recipe);
 
-            var IvAResult = new List<RecipeVsIngredient>();
             foreach (var ingreedy in recipe.Ingredients)
             {
-                var RvI = new RecipeVsIngredient();
-                RvI.RecipeId = recipe.Id;
-                RvI.IngredientId = ingreedy.Id;
-                IvAResult.Add(RvI);
-                _pdb.conn.BulkMerge(IvAResult);
+                ingreedy.RecipeId = recipe.Id;
+                //ingreedy.IngredientId = ingreedy.Id;
             }
+            _pdb.conn.Execute($"delete from recipeVsIngredient where recipeId = '{recipe.Id}'");
+
+            _pdb.conn.BulkMerge(recipe.Ingredients);
             return new Recipe[] { recipe };
         }
 
