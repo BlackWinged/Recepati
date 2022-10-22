@@ -23,14 +23,19 @@
     <None Remove="Migrator\005-Add Size and Unit to RvI.sql" />
     <None Remove="Migrator\006-add Url to recipe.sql" />
     <None Remove="Migrator\007-add name to recipeVsIngredient.sql" />
+    <None Remove="Migrator\008-Create user table.sql" />
+    <None Remove="Migrator\009-Init fridges.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Code\Managers\FridgeManager.cs" />
     <Compile Include="Code\Managers\RecipeManager.cs" />
     <Compile Include="Code\Managers\IngredientManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\009-Init fridges.sql" />
+    <EmbeddedResource Include="Migrator\008-Create user table.sql" />
     <EmbeddedResource Include="Migrator\007-add name to recipeVsIngredient.sql" />
     <EmbeddedResource Include="Migrator\006-add Url to recipe.sql" />
     <EmbeddedResource Include="Migrator\005-Add Size and Unit to RvI.sql" />
@@ -41,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Dapper.SimpleCRUD" Version="2.3.0" />
     <PackageReference Include="dbup-core" Version="4.6.3" />

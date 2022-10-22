@@ -1,3 +1,3 @@
 ﻿Alter table [RecipeVsIngredient]
-	add [Name] nvarchar(500)
+	add [Name] nvarchar(2000)
 

@@ -16,6 +16,7 @@ builder.Services.AddScoped<DB_Ingredient, DB_Ingredient>();
 builder.Services.AddScoped<IngredientManager, IngredientManager>();
 builder.Services.AddScoped<DB_Recipe, DB_Recipe>();
 builder.Services.AddScoped<RecipeManager, RecipeManager>();
+builder.Services.AddScoped<Fridge, Fridge>();
 
 
 
@@ -32,11 +33,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-
-//app.UseHttpsRedirection();
-app.UseAuthorization();
 if (app.Environment.IsDevelopment())
 {
     app.UseCors();
