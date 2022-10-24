@@ -25,15 +25,18 @@
     <None Remove="Migrator\007-add name to recipeVsIngredient.sql" />
     <None Remove="Migrator\008-Create user table.sql" />
     <None Remove="Migrator\009-Init fridges.sql" />
+    <None Remove="Migrator\010-Add userId to recipe.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Include="Code\Managers\FridgeManager.cs" />
+    <Compile Include="Code\Managers\UserManager.cs" />
     <Compile Include="Code\Managers\RecipeManager.cs" />
     <Compile Include="Code\Managers\IngredientManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\010-Add userId to recipe.sql" />
     <EmbeddedResource Include="Migrator\009-Init fridges.sql" />
     <EmbeddedResource Include="Migrator\008-Create user table.sql" />
     <EmbeddedResource Include="Migrator\007-add name to recipeVsIngredient.sql" />

@@ -12,6 +12,7 @@ namespace Recepati.Code.Models
         {
             var connectionString = _conn.ConnectionString;
 
+            
             EnsureDatabase.For.SqlDatabase(connectionString);
 
             var upgrader =

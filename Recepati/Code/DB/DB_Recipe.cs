@@ -10,9 +10,11 @@ namespace Recepati.Database
     public class DB_Recipe
     {
         private PublicConn _pdb { get; set; }
-        public DB_Recipe(PublicConn conn)
+        private UserManager users { get; set; }
+        public DB_Recipe(PublicConn conn, UserManager userManager)
         {
             _pdb = conn;
+            users = userManager;
         }
 
 
@@ -39,6 +41,7 @@ namespace Recepati.Database
 
         public IEnumerable<Recipe> Save(Recipe recipe)
         {
+            recipe.UserId = users.CurrentUserId();
             _pdb.conn.BulkMerge(recipe);
 
             foreach (var ingreedy in recipe.Ingredients)

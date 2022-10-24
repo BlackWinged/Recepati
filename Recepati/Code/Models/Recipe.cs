@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Recepati.Code.Models
 {
-    public class Recipe: BaseObject
+    public class Recipe : BaseObject
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -13,7 +13,7 @@ namespace Recepati.Code.Models
         public List<string> Procedure { get; set; }
         public List<RecipeVsIngredient> Ingredients { get; set; }
         public string Url { get; set; }
-
+        public string? UserId { get; set; }
         public Recipe()
         {
             Procedure = new List<string>();
