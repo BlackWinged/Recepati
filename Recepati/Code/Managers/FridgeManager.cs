@@ -11,10 +11,12 @@ namespace Recepati.Database
     {
         private PublicConn _pdb { get; set; }
         private DB_Fridge fridges { get; set; }
-        public FridgeManager(PublicConn conn, DB_Fridge fridges)
+        private UserManager userManager { get; set; }
+        public FridgeManager(PublicConn conn, DB_Fridge fridges, UserManager userManager)
         {
             _pdb = conn;
             this.fridges = fridges;
+            this.userManager = userManager;
         }
 
 
@@ -34,6 +36,7 @@ namespace Recepati.Database
 
         public IEnumerable<Fridge> Save(Fridge fridge)
         {
+            fridge.UserId = userManager.CurrentUserId();
             this.fridges.Save(fridge);
             return new Fridge[] { fridge };
         }

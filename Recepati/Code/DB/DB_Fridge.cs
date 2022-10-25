@@ -44,10 +44,9 @@ namespace Recepati.Database
             var FvIResult = new List<FridgeVsIngredient>();
             foreach (var item in fridge.Contents)
             {
-                var FvI = new FridgeVsIngredient();
-
-                FvI.FridgeId = item.Id;
-                FvIResult.Add(FvI);
+                item.FridgeId = fridge.Id;
+                item.IngredientId = item.Id;
+                FvIResult.Add(item);
             }
             _pdb.conn.Execute($"delete from FridgeVsIngredient where FridgeId = '{fridge.Id}'");
             _pdb.conn.BulkMerge(FvIResult);

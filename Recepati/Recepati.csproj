@@ -26,6 +26,7 @@
     <None Remove="Migrator\008-Create user table.sql" />
     <None Remove="Migrator\009-Init fridges.sql" />
     <None Remove="Migrator\010-Add userId to recipe.sql" />
+    <None Remove="Migrator\011-Add size and unit to fridgeVsIngredient.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Migrator\011-Add size and unit to fridgeVsIngredient.sql" />
     <EmbeddedResource Include="Migrator\010-Add userId to recipe.sql" />
     <EmbeddedResource Include="Migrator\009-Init fridges.sql" />
     <EmbeddedResource Include="Migrator\008-Create user table.sql" />
