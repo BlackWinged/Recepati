@@ -46,6 +46,15 @@ namespace Recepati.Controllers
             return new Fridge[] { fridge };
         }
 
+        [Route("~/fridge/saveingredient/")]
+        [HttpPost(Name = "SaveFridge")]
+        public IEnumerable<FridgeVsIngredient> SaveIngredient(FridgeVsIngredient ingredient)
+        {
+            fridgeManager.SaveIngredient(ingredient);
+
+            return new FridgeVsIngredient[] { ingredient };
+        }
+
         [Route("~/fridge/Ingredient/new")]
         public FridgeVsIngredient NewFridgeIngredient()
         {

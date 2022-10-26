@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Recepati.Code.Models;
 using Recepati.Controllers;
 using Recepati.Db.Code;
+using Recepati.Managers;
 using Z.Dapper.Plus;
 
 namespace Recepati.Database
@@ -12,11 +13,13 @@ namespace Recepati.Database
         private PublicConn _pdb { get; set; }
         private DB_Fridge fridges { get; set; }
         private UserManager userManager { get; set; }
-        public FridgeManager(PublicConn conn, DB_Fridge fridges, UserManager userManager)
+        private IngredientManager ingredientManager { get; set; }
+        public FridgeManager(PublicConn conn, DB_Fridge fridges, UserManager userManager, IngredientManager ingredientManager)
         {
             _pdb = conn;
             this.fridges = fridges;
             this.userManager = userManager;
+            this.ingredientManager = ingredientManager;
         }
 
 
@@ -39,6 +42,25 @@ namespace Recepati.Database
             fridge.UserId = userManager.CurrentUserId();
             this.fridges.Save(fridge);
             return new Fridge[] { fridge };
+        }
+
+        public IEnumerable<FridgeVsIngredient> SaveIngredient(FridgeVsIngredient fridgeIngredient)
+        {
+
+            var newIngredient = new Ingredient();
+            newIngredient.Name = fridgeIngredient.Name;
+
+            ingredientManager.Save(newIngredient);
+            fridgeIngredient.IngredientId = newIngredient.Id;
+
+            var fridge = GetForUser(userManager.CurrentUserId());
+            if (fridge != null)
+            {
+                fridge.Contents.Add(fridgeIngredient);
+                this.fridges.Save(fridge);
+            }
+
+            return new FridgeVsIngredient[] { fridgeIngredient };
         }
 
         public Fridge? GetForUser(string userId)
