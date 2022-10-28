@@ -21,6 +21,7 @@ builder.Services.AddScoped<UserManager, UserManager>();
 builder.Services.AddScoped<FridgeManager, FridgeManager>();
 builder.Services.AddScoped<DB_Fridge, DB_Fridge>();
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<SecurityManager, SecurityManager>();
 
 
 builder.Services.AddCors(options =>
