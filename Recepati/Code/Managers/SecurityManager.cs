@@ -69,7 +69,7 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
             return BCrypt.Net.BCrypt.GenerateSalt(5);
         }
 
-        public static string HashPassword(string password)
+        public string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password, GetRandomSalt());
         }
@@ -81,7 +81,7 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
         /// <param name="correctHash">Vrijednost passworda u bazi</param>
         /// <param name="customPassValidation">Delegat func - ukoliko je pass izracunat s nekom drugom funkcijom koja nije BCrypt, ovdje se postavlja custom racunanje hasha</param>
         /// <returns></returns>
-        public static bool ValidatePassword(string password, string correctHash)
+        public bool ValidatePassword(string password, string correctHash)
         {
             bool result = false;
             bool isPassNullrEmpty = string.IsNullOrEmpty(password);
@@ -105,7 +105,7 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
         }
 
 
-        public string GenerateToken()
+        public string GenerateToken(User user)
         {
             var rsaPublic = RSA.Create();
             rsaPublic.ImportFromPem(publicKey.ToCharArray());
@@ -115,9 +115,9 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
 
             var token = JwtBuilder.Create()
                       .WithAlgorithm(new RS256Algorithm(rsaPublic, rsaPrivate))
-                      .AddClaim("exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds())
-                      .AddClaim("claim1", 0)
-                      .AddClaim("claim2", "claim2-value")
+                      .AddClaim("exp", DateTimeOffset.UtcNow.AddMonths(6).ToUnixTimeSeconds())
+                      .AddClaim("idstring", user.Id)
+                      .AddClaim("usermail", user.Mail)
                       .Encode();
 
             return token;
@@ -132,9 +132,9 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
             rsaPrivate.ImportFromPem(privateKey.ToCharArray());
 
             var json = JwtBuilder.Create()
-                     .WithAlgorithm(new RS256Algorithm(rsaPublic, rsaPrivate))
-            .MustVerifySignature()
-                     .Decode(token);
+                    .WithAlgorithm(new RS256Algorithm(rsaPublic, rsaPrivate))
+                    .MustVerifySignature()
+                    .Decode(token);
 
             return json;
         }

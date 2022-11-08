@@ -12,28 +12,55 @@ namespace Recepati.Controllers
     public class UserController : ControllerBase
     {
         private readonly SecurityManager security;
+        private readonly UserManager userManager;
 
-        public UserController(SecurityManager security)
+        public UserController(SecurityManager security, UserManager userManager)
         {
             this.security = security;
+            this.userManager = userManager;
         }
 
-        [Route("~/User/")]
-        public string Get(string? query)
-        {
-            var token = security.GenerateToken();
-            return token;
-        }
+        //[Route("~/User/")]
+        //public string Get(string? query)
+        //{
+        //    var token = security.GenerateToken();
+        //    return token;
+        //}
 
         
-        [Route("~/User/TestParsed")]
-        public string Parsed(string? query)
+        //[Route("~/User/TestParsed")]
+        //public string Parsed(string? query)
+        //{
+        //    var token = security.GenerateToken();
+
+        //    var result = security.ParseToken(token);
+
+        //    return result;
+        //}
+
+        [Route("~/User/LogIn")]
+        public string LogIn(User user)
         {
-            var token = security.GenerateToken();
+            var loggedInUser = userManager.LogIn(user.Mail, user.Password);
+            var resultToken = "";
+            if (loggedInUser != null)
+            {
+                resultToken = security.GenerateToken(loggedInUser);
+                Response.Cookies.Append("Auth:Medo", resultToken);
+                return resultToken;
+            }
 
-            var result = security.ParseToken(token);
 
-            return result;
+            Response.StatusCode = 403;
+            return "Nemoze.";
+        }
+
+        [Route("~/User/Validate")]
+        public string ValidateToken(string token)
+        {
+            var parsedToken = security.ParseToken(token);
+
+            return "Success";
         }
 
     }

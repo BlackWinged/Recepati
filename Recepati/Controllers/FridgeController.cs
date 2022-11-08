@@ -14,18 +14,28 @@ namespace Recepati.Controllers
         private readonly PublicConn _pdb;
         private readonly FridgeManager fridgeManager;
         private readonly UserManager userManager;
+        private readonly SecurityManager secManager;
 
-        public FridgeController(PublicConn conn, FridgeManager recipeManager, UserManager userManager)
+        public FridgeController(PublicConn conn, FridgeManager recipeManager, UserManager userManager, SecurityManager secManager)
         {
             _pdb = conn;
             this.fridgeManager = recipeManager;
             this.userManager = userManager;
+            this.secManager = secManager;
         }
 
         [HttpGet(Name = "GetFridgeForUser")]
         [Route("~/fridge/currentuser/")]
-        public Fridge GetRecipe()
+        public Fridge GetFridge()
         {
+            var authToken = Request.Headers["Auth:Medo"].ToString();
+            if (string.IsNullOrEmpty(authToken))
+            {
+                Response.StatusCode = 403;
+                return null;
+            }
+            var parsed = secManager.ParseToken(authToken);
+
             var fridge = fridgeManager.GetForUser(userManager.CurrentUserId());
 
             if (fridge == null)

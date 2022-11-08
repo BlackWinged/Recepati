@@ -61,7 +61,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="MiniProfiler.Shared" Version="4.2.22" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="Z.Dapper.Plus" Version="4.0.33" />
+    <PackageReference Include="Z.Dapper.Plus" Version="4.0.34" />
   </ItemGroup>
 
 </Project>

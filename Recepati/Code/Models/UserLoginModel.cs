@@ -2,10 +2,10 @@
 
 namespace Recepati.Code.Models
 {
-    public class User : BaseObject
+    public class UserLoginModel : BaseObject
     {
         public string? Mail { get; set; }
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
     }
 }

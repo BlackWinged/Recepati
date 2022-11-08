@@ -1,4 +1,5 @@
 using Dapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Recepati.Code.Models;
 using Recepati.Controllers;
@@ -11,11 +12,57 @@ namespace Recepati.Database
     public class UserManager
     {
         private IHttpContextAccessor context { get; set; }
-        public UserManager(IHttpContextAccessor context)
+        private DB_User users;
+        private SecurityManager secManager;
+        public UserManager(IHttpContextAccessor context, DB_User users, SecurityManager secManager)
         {
             this.context = context;
+            this.users = users;
+            this.secManager = secManager;   
         }
 
+
+        public User? Register(User user)
+        {
+            user.Password = secManager.HashPassword(user.Password);
+            users.Register(user);
+            return user;
+        }
+
+        public User? LogIn(string mail, string password)
+        {
+            User? user = null;
+            if (!string.IsNullOrEmpty(mail))
+            {
+                user = users.GetByMail(mail);
+
+                if (!secManager.ValidatePassword(password, user.Password))
+                {
+                    user = null;
+                }
+            }
+
+            return user;
+        }
+
+        public string GenerateToken(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user ne postoji ili je kriva šifra");
+            }
+
+            var token = secManager.GenerateToken(user);
+
+            return token;
+        }
+
+        public User GetByMail(string mail)
+        {
+            var result = users.GetByMail(mail);
+
+            return result;
+        }
 
         public string CurrentUserId()
         {
