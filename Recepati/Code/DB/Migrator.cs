@@ -12,7 +12,8 @@ namespace Recepati.Code.Models
         {
             var connectionString = _conn.ConnectionString;
 
-            
+            Console.WriteLine("Migrator conn string: ");
+            Console.WriteLine(connectionString);
             EnsureDatabase.For.SqlDatabase(connectionString);
 
             var upgrader =

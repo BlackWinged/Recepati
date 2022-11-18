@@ -16,7 +16,21 @@
       "launchUrl": "recipe",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        //"DB_LOCATION": "localhost",
         "DB_LOCATION": "localhost",
+        "DB_USERNAME": "sa",
+        "DB_PASSWORD": "SuperStronkPassword!"
+      }
+    },
+
+    "IIS Express s posla": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "recipe",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        //"DB_LOCATION": "localhost",
+        "DB_LOCATION": "sentry.globaldizajn.hr",
         "DB_USERNAME": "sa",
         "DB_PASSWORD": "SuperStronkPassword!"
       }

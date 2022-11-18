@@ -17,6 +17,7 @@ builder.Services.AddScoped<DB_Ingredient, DB_Ingredient>();
 builder.Services.AddScoped<IngredientManager, IngredientManager>();
 builder.Services.AddScoped<DB_Recipe, DB_Recipe>();
 builder.Services.AddScoped<RecipeManager, RecipeManager>();
+builder.Services.AddScoped<DB_User, DB_User>();
 builder.Services.AddScoped<UserManager, UserManager>();
 builder.Services.AddScoped<FridgeManager, FridgeManager>();
 builder.Services.AddScoped<DB_Fridge, DB_Fridge>();
