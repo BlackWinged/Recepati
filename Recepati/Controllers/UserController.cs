@@ -41,7 +41,26 @@ namespace Recepati.Controllers
         [Route("~/User/LogIn")]
         public string LogIn(User user)
         {
-            var loggedInUser = userManager.LogIn(user.Mail, user.Password);
+            var loggedInUser = userManager.LogIn(user);
+            var resultToken = "";
+            if (loggedInUser != null)
+            {
+                resultToken = security.GenerateToken(loggedInUser);
+                Response.Cookies.Append("AuthMedo", resultToken);
+                return resultToken;
+            }
+
+
+            Response.StatusCode = 403;
+            return "Nemoze.";
+        }
+
+        [Route("~/User/Register")]
+        public string Register(User user)
+        {
+
+            userManager.Register(user);
+            var loggedInUser = userManager.LogIn(user);
             var resultToken = "";
             if (loggedInUser != null)
             {

@@ -29,14 +29,14 @@ namespace Recepati.Database
             return user;
         }
 
-        public User? LogIn(string mail, string password)
+        public User? LogIn(User user)
         {
-            User? user = null;
-            if (!string.IsNullOrEmpty(mail))
+            if (!string.IsNullOrEmpty(user.Mail))
             {
-                user = users.GetByMail(mail);
+                var sentPassword = user.Password;
+                user = users.GetByMail(user.Mail);
 
-                if (!secManager.ValidatePassword(password, user.Password))
+                if (!secManager.ValidatePassword(sentPassword, user.Password))
                 {
                     user = null;
                 }

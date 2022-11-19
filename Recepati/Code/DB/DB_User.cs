@@ -17,14 +17,14 @@ namespace Recepati.Database
 
         public User GetByMail(string mail)
         {
-            var user = _pdb.conn.GetList<User>("select * from user where mail = @mail", new { mail }).Single();
+            var user = _pdb.conn.GetList<User>("where mail = @mail", new { mail }).Single();
 
             return user;
         }
 
         public User? Register(User user)
         {
-            _pdb.conn.Insert(user);
+            _pdb.conn.BulkInsert(user);
             return user;
         }
     }
