@@ -18,11 +18,14 @@ namespace Recepati.Controllers
         {
             _pdb = conn;
             this.recipeManager = recipeManager;
+           
         }
 
         [HttpGet(Name = "GetAllRecipes")]
         public IEnumerable<Recipe> Get(string? query)
         {
+            var test = Request;
+            var test1 = 1;
             var recipes = new List<Recipe>();
             if (query != null)
                 recipes = recipeManager.Search(query).ToList();
