@@ -123,7 +123,7 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
             return token;
         }
 
-        public string ParseToken(string token)
+        public SecToken ParseToken(string token)
         {
             var rsaPublic = RSA.Create();
             rsaPublic.ImportFromPem(publicKey.ToCharArray());
@@ -134,7 +134,7 @@ tNMrF9xEyzwrI9m1fETWgtd0gJIyRRxCkRm7/LN6/U4awxTWWEsHjkbbE6p35x01
             var json = JwtBuilder.Create()
                     .WithAlgorithm(new RS256Algorithm(rsaPublic, rsaPrivate))
                     .MustVerifySignature()
-                    .Decode(token);
+                    .Decode<SecToken>(token);
 
             return json;
         }

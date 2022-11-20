@@ -64,4 +64,8 @@
     <PackageReference Include="Z.Dapper.Plus" Version="4.0.34" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Code\Filters\" />
+  </ItemGroup>
+
 </Project>

@@ -28,14 +28,6 @@ namespace Recepati.Controllers
         [Route("~/fridge/currentuser/")]
         public Fridge GetFridge()
         {
-            var authToken = Request.Headers["Auth:Medo"].ToString();
-            if (string.IsNullOrEmpty(authToken))
-            {
-                Response.StatusCode = 403;
-                return null;
-            }
-            var parsed = secManager.ParseToken(authToken);
-
             var fridge = fridgeManager.GetForUser(userManager.CurrentUserId());
 
             if (fridge == null)

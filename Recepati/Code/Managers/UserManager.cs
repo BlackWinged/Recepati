@@ -18,7 +18,7 @@ namespace Recepati.Database
         {
             this.context = context;
             this.users = users;
-            this.secManager = secManager;   
+            this.secManager = secManager;
         }
 
 
@@ -66,13 +66,24 @@ namespace Recepati.Database
 
         public string CurrentUserId()
         {
-            var result = "23d3ce74-78f2-4b99-9615-11d381242fd4";
+            if (context.HttpContext == null)
+            {
+                throw new Exception("not valid request");
+            }
+            var userToken = context.HttpContext.Request.Cookies["AuthMedo"];
+            if (userToken == null)
+            {
+                context.HttpContext.Response.StatusCode = 403;
+                throw new Exception("Not logged in");
+            }
 
-            return result;
+            var parsedToken = secManager.ParseToken(userToken);
+
+            return parsedToken.Idstring;
         }
 
 
 
-    
+
     }
 }

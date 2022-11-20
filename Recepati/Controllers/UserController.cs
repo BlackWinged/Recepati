@@ -58,7 +58,8 @@ namespace Recepati.Controllers
                     HttpOnly = true,
 
                     // Add the SameSite attribute, this will emit the attribute with a value of none.
-                    SameSite = SameSiteMode.None
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddMonths(6)
 
                     // The client should follow its default cookie policy.
                     // SameSite = SameSiteMode.Unspecified
