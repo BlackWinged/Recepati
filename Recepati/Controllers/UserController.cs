@@ -20,24 +20,6 @@ namespace Recepati.Controllers
             this.userManager = userManager;
         }
 
-        //[Route("~/User/")]
-        //public string Get(string? query)
-        //{
-        //    var token = security.GenerateToken();
-        //    return token;
-        //}
-
-        
-        //[Route("~/User/TestParsed")]
-        //public string Parsed(string? query)
-        //{
-        //    var token = security.GenerateToken();
-
-        //    var result = security.ParseToken(token);
-
-        //    return result;
-        //}
-
         [Route("~/User/LogIn")]
         public string LogIn(User user)
         {
